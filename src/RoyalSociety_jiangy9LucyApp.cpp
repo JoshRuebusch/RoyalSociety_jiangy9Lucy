@@ -123,6 +123,21 @@ void insertAfter(node* position, Shape* shape){
 }
 
 // try to reverse the linked list --> implement main goal E
+
+/*You mentioned in your final commit that the reverse method was not working. This is both true and kinda false. 
+The actual code in the reverse method that you have is completely right, it looks almost exactly like my code. After doing some debugging
+I found the real issue behind this problem. The root of the problem is coming from your insert after method. When you first declare your
+"first_item" node* pointer it points back to itself (which is what you want), but when you are creating more nodes, those nodes are also pointing back
+on themselves, not to the other nodes. This is making it so that your list is not really connected since each node is really only connected
+to itself. That IS the root of the problem you are having, however, after trying for a while to fix that, I kept on crashing the program. I can't
+figure out exactly how to fix it, but the problem is definitely with the pointers not going to the next node. 
+
+If you are interested in seeing what I'm talking about for yourself, place some breakpoints along each line of the insertAfter method and press
+F5 and watch position(next), position(previous) and position as well as my_node. 
+
+I tried to make the fixes but I just couldn't figure out exactly how to do them, sorry. Hope some of this explaination helped a little though. 
+
+*/
 void reverse(node* sentinel){
 	node* cur = sentinel;
     do {
